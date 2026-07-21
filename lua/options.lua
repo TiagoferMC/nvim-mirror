@@ -92,7 +92,7 @@ opt.matchpairs:append {
 
 -- Show line number and relative line number
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 
 -- Ignore case in general, but become case-sensitive when uppercase is present
 opt.ignorecase = true
