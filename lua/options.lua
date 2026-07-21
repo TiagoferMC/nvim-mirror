@@ -74,9 +74,9 @@ opt.backup = true -- Create backup for files
 opt.backupcopy = "yes" -- Copy the original file to backupdir and overwrite it
 
 -- General tab settings
-opt.tabstop = 2 -- Number of visual spaces per TAB
-opt.softtabstop = 2 -- Number of spaces in tab when editing
-opt.shiftwidth = 2 -- Number of spaces to use for autoindent
+opt.tabstop = 4 -- Number of visual spaces per TAB
+opt.softtabstop = 4 -- Number of spaces in tab when editing
+opt.shiftwidth = 4 -- Number of spaces to use for autoindent
 opt.expandtab = true -- Expand tab to spaces so that tabs are spaces
 
 -- Set matching pairs of characters and highlight matching brackets
