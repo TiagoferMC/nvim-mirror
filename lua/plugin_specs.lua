@@ -844,6 +844,13 @@ local plugin_specs = {
       require("config.treesj")
     end,
   },
+  {"echaya/neowiki.nvim"},
+  {
+  'Kicamon/markdown-table-mode.nvim',
+  config = function()
+    require('markdown-table-mode').setup()
+  end
+  }
 }
 
 if completion_engine == "nvim-cmp" then
