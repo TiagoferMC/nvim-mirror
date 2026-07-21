@@ -215,7 +215,7 @@ opt.guicursor =
   "n-v:block-Cursor/lCursor,i-c-ci-ve:ver50-blinkwait50-blinkoff100-blinkon175-Cursor2/lCursor2,r-cr:hor20,o:hor20"
 
 opt.signcolumn = "yes:1"
-opt.colorcolumn = "100"
+opt.colorcolumn = "81"
 
 -- Remove certain character from file name pattern matching
 opt.isfname:remove { "=", "," }
