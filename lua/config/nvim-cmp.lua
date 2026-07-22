@@ -34,6 +34,21 @@ cmp.setup {
         fallback()
       end
     end,
+    ["<Down>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+    ["<Up>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end,
+
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<C-e>"] = cmp.mapping.abort(),
     ["<Esc>"] = cmp.mapping.close(),
