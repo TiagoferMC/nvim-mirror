@@ -866,7 +866,7 @@ vim.fn["utils#Cabbrev"]("pc", "Lazy clean")
 vim.fn["utils#Cabbrev"]("ps", "Lazy sync")
 
 -- null-ls setup
-local null_ls = require("none-ls")
+local null_ls = require("null-ls")
 
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre" -- or "BufWritePost"
