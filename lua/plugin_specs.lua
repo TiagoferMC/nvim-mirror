@@ -844,13 +844,32 @@ local plugin_specs = {
       require("config.treesj")
     end,
   },
-  {"echaya/neowiki.nvim"},
+  { "echaya/neowiki.nvim" },
   {
-  'Kicamon/markdown-table-mode.nvim',
-  config = function()
-    require('markdown-table-mode').setup()
-  end
-  }
+    "Kicamon/markdown-table-mode.nvim",
+    config = function()
+      require("markdown-table-mode").setup()
+    end,
+  },
+  {
+    "dense-analysis/ale",
+    config = function()
+      -- Configuration goes here.
+      local g = vim.g
+
+      g.ale_ruby_rubocop_auto_correct_all = 1
+      g.ale_fix_on_save = 1
+      vim.cmd([[let g:ale_fixers = {'*': ['prettier']}]])
+      g.ale_linters = {
+        ruby = { "rubocop", "ruby" },
+        lua = { "lua_language_server" },
+      }
+    end,
+  },
+  {"neovim/nvim-lspconfig"},
+  {"nvimtools/none-ls.nvim"},
+  {"MunifTanjim/prettier.nvim"}
+>>>>>>> 81489af (fixed prettier plugin)
 }
 
 if completion_engine == "nvim-cmp" then
@@ -883,3 +902,58 @@ vim.fn["utils#Cabbrev"]("pi", "Lazy install")
 vim.fn["utils#Cabbrev"]("pud", "Lazy update")
 vim.fn["utils#Cabbrev"]("pc", "Lazy clean")
 vim.fn["utils#Cabbrev"]("ps", "Lazy sync")
+
+-- null-ls setup
+local null_ls = require("none-ls")
+
+local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+local event = "BufWritePre" -- or "BufWritePost"
+local async = event == "BufWritePost"
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      vim.keymap.set("n", "<Leader>f", function()
+        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+      end, { buffer = bufnr, desc = "[lsp] format" })
+
+      -- format on save
+      vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+      vim.api.nvim_create_autocmd(event, {
+        buffer = bufnr,
+        group = group,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr, async = async })
+        end,
+        desc = "[lsp] format on save",
+      })
+    end
+
+    if client.supports_method("textDocument/rangeFormatting") then
+      vim.keymap.set("x", "<Leader>f", function()
+        vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+      end, { buffer = bufnr, desc = "[lsp] format" })
+    end
+  end,
+})
+
+-- prettier setup
+local prettier = require("prettier")
+
+prettier.setup({
+  bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+  filetypes = {
+      "lua",
+  },
+  cli_options = {
+    bracket_spacing = true,
+    bracket_same_line = true,
+    embedded_language_formatting = "auto",
+    print_width = 80,
+    prose_wrap = "preserve",
+    quote_props = "as-needed",
+    single_quote = false,
+    tab_width = 4,
+    use_tabs = false,
+  },
+})
