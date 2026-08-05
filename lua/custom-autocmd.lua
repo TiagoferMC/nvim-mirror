@@ -11,7 +11,11 @@ api.nvim_create_autocmd({ "BufRead" }, {
   group = api.nvim_create_augroup("non_utf8_file", { clear = true }),
   callback = function()
     if vim.bo.fileencoding ~= "utf-8" then
-      vim.notify("File not in UTF-8 format!", vim.log.levels.WARN, { title = "nvim-config" })
+      vim.notify(
+        "File not in UTF-8 format!",
+        vim.log.levels.WARN,
+        { title = "nvim-config" }
+      )
     end
   end,
 })
@@ -145,17 +149,21 @@ api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-local number_toggle_group = api.nvim_create_augroup("numbertoggle", { clear = true })
-api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
-  pattern = "*",
-  group = number_toggle_group,
-  desc = "togger line number",
-  callback = function()
-    if vim.wo.number then
-      vim.wo.relativenumber = false
-    end
-  end,
-})
+local number_toggle_group =
+  api.nvim_create_augroup("numbertoggle", { clear = true })
+api.nvim_create_autocmd(
+  { "BufEnter", "FocusGained", "InsertLeave", "WinEnter" },
+  {
+    pattern = "*",
+    group = number_toggle_group,
+    desc = "togger line number",
+    callback = function()
+      if vim.wo.number then
+        vim.wo.relativenumber = false
+      end
+    end,
+  }
+)
 
 api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
   group = number_toggle_group,
@@ -180,11 +188,23 @@ api.nvim_create_autocmd("ColorScheme", {
     )
 
     -- For cursor colors, see option guicursor for more info
-    vim.api.nvim_set_hl(0, "Cursor", { fg = "black", bg = "#00c918", update = true })
-    vim.api.nvim_set_hl(0, "Cursor2", { fg = "None", bg = "yellow", update = true })
+    vim.api.nvim_set_hl(
+      0,
+      "Cursor",
+      { fg = "black", bg = "#00c918", update = true }
+    )
+    vim.api.nvim_set_hl(
+      0,
+      "Cursor2",
+      { fg = "None", bg = "yellow", update = true }
+    )
 
     -- For floating windows border highlight
-    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "None", fg = "LightGreen", update = true })
+    vim.api.nvim_set_hl(
+      0,
+      "FloatBorder",
+      { bg = "None", fg = "LightGreen", update = true }
+    )
 
     -- change the background color of floating window to None, so it blenders better
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None", update = true })
@@ -193,11 +213,27 @@ api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "Pmenu", { bg = "None", update = true })
 
     -- highlight for matching parentheses
-    vim.api.nvim_set_hl(0, "MatchParen", { bold = true, underline = true, update = true })
+    vim.api.nvim_set_hl(
+      0,
+      "MatchParen",
+      { bold = true, underline = true, update = true }
+    )
 
-    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { reverse = true, update = true })
-    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { reverse = true, update = true })
-    vim.api.nvim_set_hl(0, "IlluminatedWordText", { reverse = true, update = true })
+    vim.api.nvim_set_hl(
+      0,
+      "IlluminatedWordWrite",
+      { reverse = true, update = true }
+    )
+    vim.api.nvim_set_hl(
+      0,
+      "IlluminatedWordRead",
+      { reverse = true, update = true }
+    )
+    vim.api.nvim_set_hl(
+      0,
+      "IlluminatedWordText",
+      { reverse = true, update = true }
+    )
   end,
 })
 
@@ -306,6 +342,12 @@ api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   nested = true,
   desc = "Auto save current file",
   callback = function(ev)
+    local is_readonly =
+      vim.api.nvim_get_option_value("readonly", { buf = ev.buf })
+    local is_modifiable =
+      vim.api.nvim_get_option_value("modifiable", { buf = ev.buf })
+
+    if not is_readonly and is_modifiable then
     if utils.buf_writable(ev.buf) then
       vim.cmd([[silent! update]])
     end
