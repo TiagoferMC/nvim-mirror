@@ -250,3 +250,9 @@ keymap.set("n", "<Esc>", function()
 end, {
   desc = "close floating win",
 })
+
+keymap.set("n", "<leader>.", function()
+  vim.cmd("noh")
+end, {
+  desc = "stop search highlight"
+})
