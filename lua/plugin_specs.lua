@@ -843,6 +843,12 @@ local plugin_specs = {
         ruby = { "rubocop", "ruby" },
         lua = { "lua_language_server" },
       }
+  {
+    "Wansmer/treesj",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("config.treesj")
     end,
   },
 }
