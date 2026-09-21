@@ -444,6 +444,13 @@ require("lualine").setup {
     },
     lualine_x = {
       {
+          "location"
+      },
+      {
+        get_active_lsp,
+        icon = "",
+      },
+      {
         trailing_space,
         color = "WarningMsg",
       },
