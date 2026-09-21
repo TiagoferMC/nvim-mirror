@@ -7,8 +7,8 @@ set wrap
 if exists(':FootnoteNumber')
   nnoremap <buffer><silent> ^^ :<C-U>call markdownfootnotes#VimFootnotes('i')<CR>
   inoremap <buffer><silent> ^^ <C-O>:<C-U>call markdownfootnotes#VimFootnotes('i')<CR>
-  imap <buffer> <silent> @@ <Plug>ReturnFromFootnote
-  nmap <buffer> <silent> @@ <Plug>ReturnFromFootnote
+  imap <buffer> <silent> FF <Plug>ReturnFromFootnote
+  nmap <buffer> <silent> FF <Plug>ReturnFromFootnote
 endif
 
 " Text objects for Markdown code blocks.
