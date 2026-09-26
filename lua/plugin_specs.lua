@@ -508,6 +508,8 @@ local plugin_specs = {
                 \ 'mode' : 2,
                 \ }
 
+          let g:vimtex_view_general_viewer = 'zathura'
+
           " Viewer settings for different platforms
           if g:is_win
             let g:vimtex_view_general_viewer = 'SumatraPDF'

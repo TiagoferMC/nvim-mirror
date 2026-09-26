@@ -131,6 +131,7 @@ local enabled_lsp_servers = {
   typos_lsp = { exe = "typos-lsp", optional = true },
 }
 
+vim.lsp.enable('texlab')
 for server_name, server_info in pairs(enabled_lsp_servers) do
   if utils.executable(server_info.exe) then
     vim.lsp.enable(server_name)
