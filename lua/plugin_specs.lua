@@ -510,9 +510,9 @@ local plugin_specs = {
 
           let g:vimtex_view_general_viewer = 'zathura'
           let g:vimtex_view_method = 'zathura'
-          vim.g.vimtex_compiler_latexmk = {
-            build_dir = './out/preview',
-          }
+          let g:vimtex_compiler_latexmk = {
+               \ 'build_dir' : 'out/preview',
+               \ }
 
           " Viewer settings for different platforms
           if g:is_win
