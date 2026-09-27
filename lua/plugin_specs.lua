@@ -494,7 +494,7 @@ local plugin_specs = {
         end,
       })
 
-      vim.g.vimtex_compiler_latexmk = { outdir = './out/preview' }
+      vim.g.vimtex_compiler_latexmk = { out_dir = './out/preview' }
       vim.cmd([[
         if executable('latex')
           " Hacks for inverse search to work semi-automatically,
