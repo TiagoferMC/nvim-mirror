@@ -477,6 +477,24 @@ local plugin_specs = {
   {
     "lervag/vimtex",
     init = function()
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "tex",
+        callback = function(args)
+          vim.treesitter.start(args.buf, "latex")
+          vim.bo[args.buf].syntax = "ON"
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(args)
+          vim.treesitter.start(args.buf)
+          vim.bo[args.buf].syntax = "ON"
+        end,
+      })
+
+      vim.g.vimtex_compiler_latexmk = { outdir = './out/preview' }
       vim.cmd([[
         if executable('latex')
           " Hacks for inverse search to work semi-automatically,
@@ -492,10 +510,6 @@ local plugin_specs = {
             autocmd FileType tex nmap <buffer> <F9> <plug>(vimtex-compile)
           augroup END
 
-          let g:vimtex_compiler_latexmk = {
-                \ 'build_dir' : 'build',
-                \ }
-
           " TOC settings
           let g:vimtex_toc_config = {
                 \ 'name' : 'TOC',
@@ -510,9 +524,6 @@ local plugin_specs = {
 
           let g:vimtex_view_general_viewer = 'zathura'
           let g:vimtex_view_method = 'zathura'
-          let g:vimtex_compiler_latexmk = {
-               \ 'build_dir' : 'out/preview',
-               \ }
 
           " Viewer settings for different platforms
           if g:is_win
