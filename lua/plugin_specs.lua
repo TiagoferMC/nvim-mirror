@@ -477,7 +477,7 @@ local plugin_specs = {
   {
     "lervag/vimtex",
     init = function()
-
+      vim.g.vimtex_view_forward_search_on_start = 0
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "tex",
         callback = function(args)
@@ -494,7 +494,7 @@ local plugin_specs = {
         end,
       })
 
-      vim.g.vimtex_compiler_latexmk = { out_dir = './out/preview' }
+      vim.g.vimtex_compiler_latexmk = { out_dir = "./out/preview" }
       vim.cmd([[
         if executable('latex')
           " Hacks for inverse search to work semi-automatically,
@@ -852,7 +852,7 @@ local plugin_specs = {
         ruby = { "rubocop", "ruby" },
         lua = { "lua_language_server" },
       }
-    end
+    end,
   },
   {
     "Wansmer/treesj",
@@ -925,4 +925,3 @@ vim.fn["utils#Cabbrev"]("pi", "Lazy install")
 vim.fn["utils#Cabbrev"]("pud", "Lazy update")
 vim.fn["utils#Cabbrev"]("pc", "Lazy clean")
 vim.fn["utils#Cabbrev"]("ps", "Lazy sync")
-
