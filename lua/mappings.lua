@@ -310,27 +310,56 @@ end, {
   desc = "stop search highlight",
 })
 
-keymap.set("n", "<C-h>", function()
+keymap.set("n", "<M-h>", function()
   vim.cmd("TmuxNavigateLeft")
 end, {
-  desc = "tmux window left",
+  desc = "tmux pane left",
 })
 
-keymap.set("n", "<C-j>", function()
+keymap.set("n", "<M-Left>", function()
+  vim.cmd("TmuxNavigateLeft")
+end, {
+  desc = "tmux pane left",
+})
+
+keymap.set("n", "<M-j>", function()
   vim.cmd("TmuxNavigateDown")
 end, {
-  desc = "tmux window down",
+  desc = "tmux pane down",
 })
 
-keymap.set("n", "<C-k>", function()
+keymap.set("n", "<M-Down>", function()
+  vim.cmd("TmuxNavigateDown")
+end, {
+  desc = "tmux pane down",
+})
+
+keymap.set("n", "<M-k>", function()
   vim.cmd("TmuxNavigateUp")
 end, {
-  desc = "tmux window up",
+  desc = "tmux pane up",
 })
 
-keymap.set("n", "<C-l>", function()
+keymap.set("n", "<M-Up>", function()
+  vim.cmd("TmuxNavigateUp")
+end, {
+  desc = "tmux pane up",
+})
+
+keymap.set("n", "<M-l>", function()
   vim.cmd("TmuxNavigateRight")
 end, {
-  desc = "tmux window right",
+  desc = "tmux pane right",
 })
 
+keymap.set("n", "<M-Right>", function()
+  vim.cmd("TmuxNavigateRight")
+end, {
+  desc = "tmux pane right",
+})
+
+keymap.set("n", "<M-\\", function()
+  vim.cmd("TmuxNavigatePrevious")
+end, {
+  desc = "tmux pane previous",
+})
