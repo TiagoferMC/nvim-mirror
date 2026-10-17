@@ -573,7 +573,10 @@ local plugin_specs = {
     end,
     ft = { "tmux" },
   },
-
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
   -- Modern matchit implementation
   {
     "andymass/vim-matchup",
