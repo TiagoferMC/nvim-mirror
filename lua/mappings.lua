@@ -11,17 +11,42 @@ keymap.set("i", "<c-u>", "<Esc>viwUea")
 keymap.set("i", "<c-t>", "<Esc>b~lea")
 
 -- Paste non-linewise text above or below current line, see https://stackoverflow.com/a/1346777/6064933
-keymap.set("n", "<leader>p", "m`o<ESC>p``", { desc = "paste below current line" })
-keymap.set("n", "<leader>P", "m`O<ESC>p``", { desc = "paste above current line" })
+keymap.set(
+  "n",
+  "<leader>p",
+  "m`o<ESC>p``",
+  { desc = "paste below current line" }
+)
+keymap.set(
+  "n",
+  "<leader>P",
+  "m`O<ESC>p``",
+  { desc = "paste above current line" }
+)
 
 -- Shortcut for faster save and quit
-keymap.set("n", "<leader>w", "<cmd>update<cr>", { silent = true, desc = "save buffer" })
+keymap.set(
+  "n",
+  "<leader>w",
+  "<cmd>update<cr>",
+  { silent = true, desc = "save buffer" }
+)
 
 -- Saves the file if modified and quit
-keymap.set("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current window" })
+keymap.set(
+  "n",
+  "<leader>q",
+  "<cmd>x<cr>",
+  { silent = true, desc = "quit current window" }
+)
 
 -- Quit all opened buffers
-keymap.set("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc = "quit nvim" })
+keymap.set(
+  "n",
+  "<leader>Q",
+  "<cmd>qa!<cr>",
+  { silent = true, desc = "quit nvim" }
+)
 
 -- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
 keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
@@ -41,7 +66,10 @@ keymap.set("n", [[\dB]], function()
 
   for _, buf_id in pairs(buf_ids) do
     -- do not Delete unlisted buffers, which may lead to unexpected errors
-    if vim.api.nvim_get_option_value("buflisted", { buf = buf_id }) and buf_id ~= cur_buf then
+    if
+      vim.api.nvim_get_option_value("buflisted", { buf = buf_id })
+      and buf_id ~= cur_buf
+    then
       vim.api.nvim_buf_delete(buf_id, { force = true })
     end
   end
@@ -90,7 +118,12 @@ keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {
 
 -- Change current working directory locally and print cwd after that,
 -- see https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "change cwd" })
+keymap.set(
+  "n",
+  "<leader>cd",
+  "<cmd>lcd %:p:h<cr><cmd>pwd<cr>",
+  { desc = "change cwd" }
+)
 
 -- Use Esc to quit builtin terminal
 keymap.set("t", "<Esc>", [[<c-\><c-n>]])
@@ -140,7 +173,12 @@ keymap.set(
 )
 
 -- Move current visual-line selection up and down
-keymap.set("x", "<A-k>", '<cmd>call utils#MoveSelection("up")<cr>', { desc = "move selection up" })
+keymap.set(
+  "x",
+  "<A-k>",
+  '<cmd>call utils#MoveSelection("up")<cr>',
+  { desc = "move selection up" }
+)
 
 keymap.set(
   "x",
@@ -157,9 +195,14 @@ keymap.set("x", "p", '"_c<Esc>p')
 keymap.set("n", "gb", '<cmd>call buf_utils#GoToBuffer(v:count, "forward")<cr>', {
   desc = "go to buffer (forward)",
 })
-keymap.set("n", "gB", '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>', {
-  desc = "go to buffer (backward)",
-})
+keymap.set(
+  "n",
+  "gB",
+  '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>',
+  {
+    desc = "go to buffer (backward)",
+  }
+)
 
 -- Switch windows
 --keymap.set("n", "<left>", "<c-w>h")
@@ -168,10 +211,20 @@ keymap.set("n", "gB", '<cmd>call buf_utils#GoToBuffer(v:count, "backward")<cr>',
 --keymap.set("n", "<Down>", "<C-W>j")
 
 -- Text objects for URL
-keymap.set({ "x", "o" }, "iu", "<cmd>call text_obj#URL()<cr>", { desc = "URL text object" })
+keymap.set(
+  { "x", "o" },
+  "iu",
+  "<cmd>call text_obj#URL()<cr>",
+  { desc = "URL text object" }
+)
 
 -- Text objects for entire buffer
-keymap.set({ "x", "o" }, "iB", ":<C-U>call text_obj#Buffer()<cr>", { desc = "buffer text object" })
+keymap.set(
+  { "x", "o" },
+  "iB",
+  ":<C-U>call text_obj#Buffer()<cr>",
+  { desc = "buffer text object" }
+)
 
 -- Do not move my cursor when joining lines.
 keymap.set("n", "J", function()
@@ -254,5 +307,30 @@ end, {
 keymap.set("n", "<leader>.", function()
   vim.cmd("noh")
 end, {
-  desc = "stop search highlight"
+  desc = "stop search highlight",
 })
+
+keymap.set("n", "<C-h>", function()
+  vim.cmd("TmuxNavigateLeft")
+end, {
+  desc = "tmux window left",
+})
+
+keymap.set("n", "<C-j>", function()
+  vim.cmd("TmuxNavigateDown")
+end, {
+  desc = "tmux window down",
+})
+
+keymap.set("n", "<C-k>", function()
+  vim.cmd("TmuxNavigateUp")
+end, {
+  desc = "tmux window up",
+})
+
+keymap.set("n", "<C-l>", function()
+  vim.cmd("TmuxNavigateRight")
+end, {
+  desc = "tmux window right",
+})
+
