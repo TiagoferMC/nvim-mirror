@@ -29,7 +29,10 @@
 
 # Introduction
 
-This repo hosts my Nvim configuration for Linux, macOS, and Windows. Modified from https://github.com/jdhao/nvim-config/
+This repo hosts my Nvim configuration for Linux, macOS, and Windows.
+
+*Modified from https://github.com/jdhao/nvim-config/*
+
 `init.lua` is the config entry point for terminal Nvim,
 and `ginit.vim` is the additional config file for [GUI client of Nvim](https://github.com/neovim/neovim/wiki/Related-projects#gui).
 
@@ -189,3 +192,4 @@ If you still have an issue, [open a new issue](https://github.com/jdhao/nvim-con
 
 Some of the resources that I find helpful in mastering Nvim is documented [here](docs/nvim_resources.md).
 You may also be interested in my posts on configuring Nvim [here](https://jdhao.github.io/categories/Nvim/).
+
