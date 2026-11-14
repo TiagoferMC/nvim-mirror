@@ -77,8 +77,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<C-k>", vim.lsp.buf.signature_help)
     map("n", "<space>rn", vim.lsp.buf.rename, { desc = "variable rename" })
     map("n", "<space>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
-    map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
-    map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { desc = "remove workspace folder" })
+    map(
+      "n",
+      "<space>wa",
+      vim.lsp.buf.add_workspace_folder,
+      { desc = "add workspace folder" }
+    )
+    map(
+      "n",
+      "<space>wr",
+      vim.lsp.buf.remove_workspace_folder,
+      { desc = "remove workspace folder" }
+    )
     map("n", "<space>wl", function()
       vim.print(vim.lsp.buf.list_workspace_folders())
     end, { desc = "list workspace folder" })
@@ -136,7 +146,7 @@ local enabled_lsp_servers = {
   typos_lsp = { exe = "typos-lsp", optional = true },
 }
 
-vim.lsp.enable('texlab')
+vim.lsp.enable("texlab")
 for server_name, server_info in pairs(enabled_lsp_servers) do
   if utils.executable(server_info.exe) then
     vim.lsp.enable(server_name)
@@ -171,7 +181,8 @@ vim.api.nvim_create_user_command("LspRestart", "lsp restart", {
   desc = "Restart LSP",
 })
 
-local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local frames =
+  { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 local i_frame = 1
 
 local show_lsp_progress = function(msg_id, msg, title, kind, percent)
@@ -212,7 +223,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 
     local progress_title = value.title or ""
 
-    local progress_msg = value.message
+    local progress_msg = value.message or ""
     local progress_kind = value.kind
     if progress_kind == "end" then
       progress_msg = "done"
@@ -261,7 +272,8 @@ vim.api.nvim_create_user_command("LspAttached", function()
     height = 10,
   }
 
-  local win_width, win_height = vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
+  local win_width, win_height =
+    vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
   local pos_col = win_width / 2 - size.width / 2
   local pos_row = win_height / 2 - size.height / 2
 
