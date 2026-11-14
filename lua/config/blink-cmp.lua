@@ -8,7 +8,8 @@ require("blink.cmp").setup {
     preset = "enter",
     ["<Tab>"] = { "select_next", "fallback" },
     ["<S-Tab>"] = { "select_prev", "fallback" },
-    --["<CR>"] = { "select_and_accept", "fallback" },
+    ["<Down>"] = { "select_next", "fallback" },
+    ["<Up>"] = { "select_prev", "fallback" },
     ["<C-U>"] = { "scroll_documentation_up", "fallback" },
     ["<C-D>"] = { "scroll_documentation_down", "fallback" },
   },
@@ -112,7 +113,7 @@ require("blink.cmp").setup {
   cmdline = {
     enabled = true,
     keymap = {
-      preset = "cmdline",
+      preset = "inherit",
       ["<Tab>"] = {
         function(cmp)
           local line = vim.fn.getcmdline()
@@ -139,7 +140,6 @@ require("blink.cmp").setup {
         end,
         "fallback",
       },
-      ["<S-Tab>"] = { "select_prev", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
     },
     completion = {
