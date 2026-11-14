@@ -249,3 +249,5 @@ opt.wrap = false -- Do not wrap
 opt.ruler = false
 
 opt.showcmdloc = "statusline"
+
+o.inccommand = "split"
