@@ -28,12 +28,12 @@ local completion_engine = "blink"
 local git_sign_engine = "minidiff"
 
 local cmp_plugin_specs = {
-  { "hrsh7th/cmp-nvim-lsp", lazy = true },
-  { "hrsh7th/cmp-path", lazy = true },
-  { "hrsh7th/cmp-buffer", lazy = true },
-  { "hrsh7th/cmp-omni", lazy = true },
-  { "hrsh7th/cmp-cmdline", lazy = true },
-  { "quangnguyen30192/cmp-nvim-ultisnips", lazy = true },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true, enabled=false },
+  { "hrsh7th/cmp-path", lazy = true, enabled=false },
+  { "hrsh7th/cmp-buffer", lazy = true, enabled=false },
+  { "hrsh7th/cmp-omni", lazy = true, enabled=false },
+  { "hrsh7th/cmp-cmdline", lazy = true, enabled=false },
+  { "quangnguyen30192/cmp-nvim-ultisnips", lazy = true, enabled=false },
   {
     "hrsh7th/nvim-cmp",
     name = "nvim-cmp",
@@ -41,6 +41,7 @@ local cmp_plugin_specs = {
     config = function()
       require("config.nvim-cmp")
     end,
+    enabled=false,
   },
 }
 
