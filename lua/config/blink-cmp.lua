@@ -6,8 +6,8 @@ require("blink.cmp").setup {
   --
   keymap = {
     preset = "enter",
-    --["<Tab>"] = { "select_next", "fallback" },
-    --["<S-Tab>"] = { "select_prev", "fallback" },
+    ["<Tab>"] = { "select_next", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "fallback" },
     --["<CR>"] = { "select_and_accept", "fallback" },
     ["<C-U>"] = { "scroll_documentation_up", "fallback" },
     ["<C-D>"] = { "scroll_documentation_down", "fallback" },
