@@ -71,7 +71,8 @@ local on_exit_fetch = function(result)
     -- the @{upstream} notation is inspired by post: https://www.reddit.com/r/neovim/s/OWNFzqE7nO
 
     -- this shows the ahead and behind info in one line in this format: `<ahead><tab><behin>`
-    local ahead_behind_cmd = "git rev-list --left-right --count HEAD...@{upstream}"
+    local ahead_behind_cmd =
+      "git rev-list --left-right --count HEAD...@{upstream}"
     async_cmd(ahead_behind_cmd, GIT_CMD_TIMEOUT_OTHER, update_ahead_behind_info)
   end
 end
@@ -98,13 +99,15 @@ local function get_git_ahead_behind_info()
 
   local ahead_cnt = status.ahead_count
   if ahead_cnt > 0 then
-    local ahead_str = string.format("%s[%d] ", symbol_icon.git.commit.ahead, ahead_cnt)
+    local ahead_str =
+      string.format("%s[%d] ", symbol_icon.git.commit.ahead, ahead_cnt)
     msg = msg .. ahead_str
   end
 
   local behind_cnt = status.behind_count
   if behind_cnt > 0 then
-    local behind_str = string.format("%s[%d] ", symbol_icon.git.commit.behind, behind_cnt)
+    local behind_str =
+      string.format("%s[%d] ", symbol_icon.git.commit.behind, behind_cnt)
     msg = msg .. behind_str
   end
 
@@ -201,8 +204,10 @@ local function mixed_indent()
   if mixed_same_line ~= nil and mixed_same_line > 0 then
     return "MI:" .. mixed_same_line
   end
-  local space_indent_cnt = fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
-  local tab_indent_cnt = fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
+  local space_indent_cnt =
+    fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
+  local tab_indent_cnt =
+    fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
   if space_indent_cnt > tab_indent_cnt then
     return "MI:" .. tab_indent
   else
@@ -307,7 +312,10 @@ local show_branch_menu = function()
   local branches_l = vim
     .iter(local_branches)
     :map(function(v)
-      return Menu.item(string.format(" %s %s", symbol_icon.git.branch, v), { is_local = true })
+      return Menu.item(
+        string.format(" %s %s", symbol_icon.git.branch, v),
+        { is_local = true }
+      )
     end)
     :totable()
 
@@ -324,7 +332,10 @@ local show_branch_menu = function()
   local branches_r = vim
     .iter(remote_branches)
     :map(function(v)
-      return Menu.item(string.format(" %s %s", symbol_icon.git.branch, v), { is_local = false })
+      return Menu.item(
+        string.format(" %s %s", symbol_icon.git.branch, v),
+        { is_local = false }
+      )
     end)
     :totable()
   vim.list_extend(menu_items, branches_r)
@@ -375,7 +386,8 @@ local show_lsp_menu = function()
     height = 5,
   }
 
-  local win_width, win_height = vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
+  local win_width, win_height =
+    vim.api.nvim_win_get_width(0), vim.api.nvim_win_get_height(0)
 
   local pos_col = win_width - size.width - 5
   local pos_row = win_height - size.height - 2
@@ -453,11 +465,7 @@ require("lualine").setup {
     },
     lualine_x = {
       {
-          "location"
-      },
-      {
-        get_active_lsp,
-        icon = "",
+        "location",
       },
       {
         trailing_space,
