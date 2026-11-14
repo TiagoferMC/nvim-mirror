@@ -5,7 +5,7 @@ require("blink.cmp").setup {
   -- 'none' for no mappings
   --
   keymap = {
-    preset = "super-tab",
+    preset = "enter",
     --["<Tab>"] = { "select_next", "fallback" },
     --["<S-Tab>"] = { "select_prev", "fallback" },
     --["<CR>"] = { "select_and_accept", "fallback" },
