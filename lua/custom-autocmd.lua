@@ -333,17 +333,17 @@ api.nvim_create_autocmd("BufWritePost", {
   end,
 })
 
-api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  group = api.nvim_create_augroup("auto_save", { clear = true }),
-  pattern = { "*" },
-  nested = true,
-  desc = "Auto save current file",
-  callback = function(ev)
-    if utils.buf_writable(ev.buf) then
-      vim.cmd([[silent! update]])
-    end
-  end,
-})
+-- api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+--   group = api.nvim_create_augroup("auto_save", { clear = true }),
+--   pattern = { "*" },
+--   nested = true,
+--   desc = "Auto save current file",
+--   callback = function(ev)
+--     if utils.buf_writable(ev.buf) then
+--       vim.cmd([[silent! update]])
+--     end
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*",
