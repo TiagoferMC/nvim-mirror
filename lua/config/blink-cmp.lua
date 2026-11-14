@@ -25,7 +25,7 @@ require("blink.cmp").setup {
       winhighlight = "Normal:BlinkCmpMenu,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
     },
     documentation = {
-      auto_show = true,
+      auto_show = false,
     },
   },
 
@@ -105,7 +105,7 @@ require("blink.cmp").setup {
   cmdline = {
     completion = {
       menu = {
-        auto_show = true,
+        auto_show = false,
       },
     },
     keymap = {

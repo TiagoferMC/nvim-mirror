@@ -100,7 +100,16 @@ opt.smartcase = true
 
 -- File and script encoding settings for vim
 opt.fileencoding = "utf-8"
-opt.fileencodings = { "ucs-bom", "utf-8", "cp936", "gb18030", "big5", "euc-jp", "euc-kr", "latin1" }
+opt.fileencodings = {
+  "ucs-bom",
+  "utf-8",
+  "cp936",
+  "gb18030",
+  "big5",
+  "euc-jp",
+  "euc-kr",
+  "latin1",
+}
 
 -- Break line at predefined characters
 opt.linebreak = true
@@ -108,7 +117,9 @@ opt.linebreak = true
 opt.showbreak = "↪"
 
 -- List all matches and complete till longest common string
-opt.wildmode = "list:longest"
+opt.wildmenu = true
+opt.wildmode = "longest:full,full"
+o.wildcharm = ('<Tab>'):byte()
 
 -- Minimum lines to keep above and below cursor when scrolling down/up
 opt.scrolloff = 5
