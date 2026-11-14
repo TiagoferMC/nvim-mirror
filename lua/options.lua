@@ -119,7 +119,6 @@ opt.showbreak = "↪"
 -- List all matches and complete till longest common string
 opt.wildmenu = true
 opt.wildmode = "longest:full,full"
-o.wildcharm = ('<Tab>'):byte()
 
 -- Minimum lines to keep above and below cursor when scrolling down/up
 opt.scrolloff = 5

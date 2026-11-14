@@ -41,6 +41,12 @@ require("blink.cmp").setup {
   sources = {
     default = { "lsp", "path", "buffer", "ultisnips" },
     providers = {
+      cmdline = {
+        opts = {
+          -- Native blink.cmp option to ignore shell commands without hanging
+          ignore_cmds = { "!" },
+        },
+      },
       ultisnips = {
         -- IMPORTANT: use the same name as you would for nvim-cmp
         name = "ultisnips",
@@ -102,14 +108,68 @@ require("blink.cmp").setup {
   --
   -- See the fuzzy documentation for more information
   fuzzy = { implementation = "prefer_rust_with_warning" },
+
   cmdline = {
+    enabled = true,
+    keymap = {
+      preset = "cmdline",
+      ["<Tab>"] = {
+        function(cmp)
+          local line = vim.fn.getcmdline()
+          local is_shell = vim.fn.getcmdtype() == ":"
+            and (
+              line:match("^%s*!")
+              or line:match("^'<,'>%s*!")
+              or vim.fn.getcmdcompltype() == "shellcmd"
+            )
+
+          if is_shell then
+            -- Trigger native Neovim wildmenu instead of inserting ^I
+            if vim.fn.exists("*wildtrigger") == 1 then
+              vim.fn.wildtrigger()
+              return true
+            end
+            return false
+          end
+
+          if cmp.is_visible() then
+            return cmp.select_next()
+          end
+          return cmp.show({ providers = { "cmdline" } })
+        end,
+        "fallback",
+      },
+      ["<S-Tab>"] = { "select_prev", "fallback" },
+      ["<CR>"] = { "select_and_accept", "fallback" },
+    },
     completion = {
       menu = {
         auto_show = false,
       },
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = true,
+        },
+      },
     },
-    keymap = {
-      ["<CR>"] = { "select_and_accept", "fallback" },
-    },
+    sources = function()
+      local type = vim.fn.getcmdtype()
+      if type == "/" or type == "?" then
+        return { "buffer" }
+      end
+      if type == ":" then
+        local line = vim.fn.getcmdline()
+        if
+          line:match("^%s*!")
+          or line:match("^'<,'>%s*!")
+          or vim.fn.getcmdcompltype() == "shellcmd"
+        then
+          return {}
+        end
+        return { "cmdline" }
+      end
+      return {}
+    end,
   },
 }

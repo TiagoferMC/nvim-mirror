@@ -67,6 +67,15 @@ local blink_plugin_specs = {
     version = "1.*",
     config = function()
       require("config.blink-cmp")
+      -- Intercept '!' in command mode when typed at the start of the line (or after a visual range)
+        vim.keymap.set("c", "!", function()
+        local cmdline = vim.fn.getcmdline()
+        if vim.fn.getcmdtype() == ":" and (cmdline:match("^%s*$") or cmdline == "'<,'>") then
+          -- Close blink menu if open and insert '!' cleanly without triggering completion
+          pcall(function() require("blink.cmp").hide() end)
+        end
+        return "!"
+      end, { expr = true })
     end,
     opts_extend = { "sources.default" },
   },
