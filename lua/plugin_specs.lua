@@ -41,7 +41,7 @@ local cmp_plugin_specs = {
     config = function()
       require("config.nvim-cmp")
     end,
-    enabled=false,
+    enabled = false,
   },
 }
 
@@ -68,11 +68,16 @@ local blink_plugin_specs = {
     config = function()
       require("config.blink-cmp")
       -- Intercept '!' in command mode when typed at the start of the line (or after a visual range)
-        vim.keymap.set("c", "!", function()
+      vim.keymap.set("c", "!", function()
         local cmdline = vim.fn.getcmdline()
-        if vim.fn.getcmdtype() == ":" and (cmdline:match("^%s*$") or cmdline == "'<,'>") then
+        if
+          vim.fn.getcmdtype() == ":"
+          and (cmdline:match("^%s*$") or cmdline == "'<,'>")
+        then
           -- Close blink menu if open and insert '!' cleanly without triggering completion
-          pcall(function() require("blink.cmp").hide() end)
+          pcall(function()
+            require("blink.cmp").hide()
+          end)
         end
         return "!"
       end, { expr = true })
@@ -882,36 +887,111 @@ local plugin_specs = {
       require("config.treesj")
     end,
   },
-  { "echaya/neowiki.nvim" },
   {
-    "Kicamon/markdown-table-mode.nvim",
-    config = function()
-      require("markdown-table-mode").setup()
-    end,
-  },
-  {
-    "dense-analysis/ale",
-    config = function()
-      -- Configuration goes here.
-      local g = vim.g
+    "fedepujol/move.nvim",
+    keys = {
+      -- Normal Mode
+      { "<C-j>", ":MoveLine(1)<CR>", desc = "Move Line Up" },
+      { "<C-Down>", ":MoveLine(1)<CR>", desc = "Move Line Up" },
 
-      g.ale_ruby_rubocop_auto_correct_all = 1
-      g.ale_fix_on_save = 1
-      g.ale_lint_on_text_changed = "never"
-      g.ale_lint_on_insert_leave = 1
-      vim.cmd([[
-       let g:ale_fixers = {
-\          '*': [ 'trim_whitespace' ],
-\          'lua': [ 'stylua' ],
-\          'python': [ 'isort', 'black' ],
-\          'rust': [ 'rustfmt' ],
-\          'yaml': [ 'remove_trailing_lines' ]
-\      }]])
-      g.ale_linters = {
-        ruby = { "rubocop", "ruby" },
-        lua = { "lua_language_server" },
-      }
-    end,
+      { "<C-k>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
+      { "<C-Up>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
+
+      { "<C-h>", ":MoveHChar(-1)<CR>", desc = "Move Character Left" },
+
+      { "<C-l>", ":MoveHChar(1)<CR>", desc = "Move Character Right" },
+
+      {
+        "<leader>f",
+        ":MoveWord(-1)<CR>",
+        mode = { "n" },
+        desc = "Move Word Left",
+      },
+      {
+        "<leader>Right",
+        ":MoveWord(-1)<CR>",
+        mode = { "n" },
+        desc = "Move Word Left",
+      },
+
+      {
+        "<leader>b",
+        ":MoveWord(1)<CR>",
+        mode = { "n" },
+        desc = "Move Word Right",
+      },
+      {
+        "<leader>Left",
+        ":MoveWord(1)<CR>",
+        mode = { "n" },
+        desc = "Move Word Right",
+      },
+
+      -- Visual Mode
+      { "<C-j>", ":MoveBlock(1)<CR>", mode = { "v" }, desc = "Move Block Up" },
+      {
+        "<C-Down>",
+        ":MoveBlock(1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Up",
+      },
+
+      {
+        "<C-k>",
+        ":MoveBlock(-1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Down",
+      },
+      {
+        "<C-Up>",
+        ":MoveBlock(-1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Down",
+      },
+
+      {
+        "<C-h>",
+        ":MoveHBlock(-1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Left",
+      },
+      {
+        "<C-Left>",
+        ":MoveHBlock(-1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Left",
+      },
+
+      {
+        "<C-l>",
+        ":MoveHBlock(1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Right",
+      },
+      {
+        "<C-Right>",
+        ":MoveHBlock(1)<CR>",
+        mode = { "v" },
+        desc = "Move Block Right",
+      },
+    },
+    opts = {
+      --- Config
+      line = {
+        enable = true, -- Enables line movement
+        indent = true, -- Toggles indentation
+      },
+      block = {
+        enable = true, -- Enables block movement
+        indent = true, -- Toggles indentation
+      },
+      word = {
+        enable = false, -- Enables word movement
+      },
+      char = {
+        enable = true, -- Enables char movement
+      },
+    },
   },
 }
 
@@ -920,7 +1000,10 @@ if completion_engine == "nvim-cmp" then
 elseif completion_engine == "blink" then
   vim.list_extend(plugin_specs, blink_plugin_specs)
 else
-  vim._log(string.format("Unknown completion engine: %s!", completion_engine), vim.log.levels.WARN)
+  vim._log(
+    string.format("Unknown completion engine: %s!", completion_engine),
+    vim.log.levels.WARN
+  )
 end
 
 if git_sign_engine == "gitsigns" then
@@ -928,7 +1011,10 @@ if git_sign_engine == "gitsigns" then
 elseif git_sign_engine == "minidiff" then
   vim.list_extend(plugin_specs, minidiff_specs)
 else
-  vim._log(string.format("Unknown git sign engine: %s!", git_sign_engine), vim.log.levels.WARN)
+  vim._log(
+    string.format("Unknown git sign engine: %s!", git_sign_engine),
+    vim.log.levels.WARN
+  )
 end
 
 require("lazy").setup {
