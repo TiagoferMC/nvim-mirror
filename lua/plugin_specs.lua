@@ -919,31 +919,31 @@ local plugin_specs = {
         desc = "Move Character Right",
       },
 
-      {
-        "<leader>f",
-        ":MoveWord(-1)<CR>",
-        mode = { "n" },
-        desc = "Move Word Left",
-      },
-      {
-        "<leader>Right",
-        ":MoveWord(-1)<CR>",
-        mode = { "n" },
-        desc = "Move Word Left",
-      },
+      --{
+      --  "<leader>f",
+      --  ":MoveWord(-1)<CR>",
+      --  mode = { "n" },
+      --  desc = "Move Word Left",
+      --},
+      --{
+      --  "<leader>Right",
+      --  ":MoveWord(-1)<CR>",
+      --  mode = { "n" },
+      --  desc = "Move Word Left",
+      --},
 
-      {
-        "<leader>b",
-        ":MoveWord(1)<CR>",
-        mode = { "n" },
-        desc = "Move Word Right",
-      },
-      {
-        "<leader>Left",
-        ":MoveWord(1)<CR>",
-        mode = { "n" },
-        desc = "Move Word Right",
-      },
+      --{
+      --  "<leader>b",
+      --  ":MoveWord(1)<CR>",
+      --  mode = { "n" },
+      --  desc = "Move Word Right",
+      --},
+      --{
+      --  "<leader>Left",
+      --  ":MoveWord(1)<CR>",
+      --  mode = { "n" },
+      --  desc = "Move Word Right",
+      --},
 
       -- Visual Mode
       { "<C-j>", ":MoveBlock(1)<CR>", mode = { "v" }, desc = "Move Block Up" },
