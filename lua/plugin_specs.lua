@@ -882,8 +882,8 @@ local plugin_specs = {
         lua = { "lua_language_server" },
         c = { "clangd" },
         cpp = { "clangd" },
-        cs = { "clangd" },
-        --java = { "javac" },
+        cs = { "codebook" },
+        java = { "javac", "codebook" },
       }
     end,
   },
