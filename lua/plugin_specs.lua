@@ -897,9 +897,9 @@ local plugin_specs = {
       { "<C-k>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
       { "<C-Up>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
 
-      { "<C-h>", ":MoveHChar(-1)<CR>", desc = "Move Character Left" },
+      { "<C-h>", ":MoveHChar(-1)<CR>", mode = { "n" }, desc = "Move Character Left" },
 
-      { "<C-l>", ":MoveHChar(1)<CR>", desc = "Move Character Right" },
+      { "<C-l>", ":MoveHChar(1)<CR>", mode = { "n" }, desc = "Move Character Right" },
 
       {
         "<leader>f",

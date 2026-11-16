@@ -4,7 +4,7 @@ require("which-key").setup {
     mappings = false,
   },
   keys = {
-    scroll_down = "<Down>", -- binding to scroll down inside the popup
-    scroll_up = "<Up>",
+    scroll_down = "<A-Down>", -- binding to scroll down inside the popup
+    scroll_up = "<A-Up>",
   },
 }
