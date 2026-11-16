@@ -871,11 +871,19 @@ local plugin_specs = {
 \          'lua': [ 'stylua' ],
 \          'python': [ 'isort', 'black' ],
 \          'rust': [ 'rustfmt' ],
-\          'yaml': [ 'remove_trailing_lines' ]
+\          'yaml': [ 'remove_trailing_lines' ],
+\          'c': [ 'clang-format' ],
+\          'cpp': [ 'clang-format' ],
+\          'cs': [ 'clang-format' ],
+\          'java': [ 'clang-format' ],
 \      }]])
       g.ale_linters = {
         ruby = { "rubocop", "ruby" },
         lua = { "lua_language_server" },
+        c = { "clangd" },
+        cpp = { "clangd" },
+        cs = { "clangd" },
+        --java = { "javac" },
       }
     end,
   },
@@ -897,9 +905,19 @@ local plugin_specs = {
       { "<C-k>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
       { "<C-Up>", ":MoveLine(-1)<CR>", desc = "Move Line Down" },
 
-      { "<C-h>", ":MoveHChar(-1)<CR>", mode = { "n" }, desc = "Move Character Left" },
+      {
+        "<C-h>",
+        ":MoveHChar(-1)<CR>",
+        mode = { "n" },
+        desc = "Move Character Left",
+      },
 
-      { "<C-l>", ":MoveHChar(1)<CR>", mode = { "n" }, desc = "Move Character Right" },
+      {
+        "<C-l>",
+        ":MoveHChar(1)<CR>",
+        mode = { "n" },
+        desc = "Move Character Right",
+      },
 
       {
         "<leader>f",

@@ -119,10 +119,10 @@ vim.lsp.config("*", {
 local enabled_lsp_servers = {
   bashls = { exe = "bash-language-server", optional = true },
 
-  -- clangd = { exe = "clangd", optional = true },
+  clangd = { exe = "clangd", optional = true },
 
   -- to install codebook, run `brew install codebook-lsp`
-  -- codebook = { exe = "codebook-lsp", optional = true },
+  codebook = { exe = "codebook-lsp", optional = true },
 
   -- the server can be install via homebrew: brew install golangci-lint-langserver
   -- golangci-lint also needs to be installed: https://github.com/golangci/golangci-lint
@@ -131,12 +131,12 @@ local enabled_lsp_servers = {
 
   -- language server for lua
   lua_ls = { exe = "lua-language-server", optional = false },
-  -- emmylua_ls = { exe = "emmylua_ls", optional = true },
+  emmylua_ls = { exe = "emmylua_ls", optional = true },
 
   -- python related LSP
   pyright = { exe = "delance-langserver", optional = false },
-  -- pyrefly = { exe = "pyrefly", optional = true },
-  -- ty = { exe = "ty", optional = true },
+  pyrefly = { exe = "pyrefly", optional = true },
+  ty = { exe = "ty", optional = true },
   ruff = { exe = "ruff", optional = true },
 
   vimls = { exe = "vim-language-server", optional = true },
