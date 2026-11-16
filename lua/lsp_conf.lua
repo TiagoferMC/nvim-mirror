@@ -121,7 +121,7 @@ local enabled_lsp_servers = {
 
   clangd = { exe = "clangd", optional = true },
   jstls = { exe = "jstls", optional = true },
-  csharpls = { exe = "csharp-ls", optional = true },
+  csharp_ls = { exe = "csharp-ls", optional = true },
 
   -- to install codebook, run `brew install codebook-lsp`
   codebook = { exe = "codebook-lsp", optional = true },
