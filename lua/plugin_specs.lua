@@ -979,11 +979,11 @@ local plugin_specs = {
       --- Config
       line = {
         enable = true, -- Enables line movement
-        indent = true, -- Toggles indentation
+        indent = false, -- Toggles indentation
       },
       block = {
         enable = true, -- Enables block movement
-        indent = true, -- Toggles indentation
+        indent = false, -- Toggles indentation
       },
       word = {
         enable = false, -- Enables word movement
