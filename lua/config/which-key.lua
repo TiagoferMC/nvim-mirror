@@ -3,4 +3,8 @@ require("which-key").setup {
   icons = {
     mappings = false,
   },
+  keys = {
+    scroll_down = "<Down>", -- binding to scroll down inside the popup
+    scroll_up = "<Up>",
+  },
 }
