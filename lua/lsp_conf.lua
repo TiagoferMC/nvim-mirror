@@ -120,7 +120,7 @@ local enabled_lsp_servers = {
   bashls = { exe = "bash-language-server", optional = true },
 
   clangd = { exe = "clangd", optional = true },
-  jdtls = { exe = "jstls", optional = true },
+  jdtls = { exe = "jdtls", optional = true },
   csharp_ls = { exe = "csharp-ls", optional = true },
 
   -- to install codebook, run `brew install codebook-lsp`
